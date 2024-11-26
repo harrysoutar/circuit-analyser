@@ -8,7 +8,7 @@ Filter::Filter() : _filter_type("LP"), _resistor(0.0), _capacitor(0.0) {}
 // Setter for filter type
 // Allows setting the filter type as either "HP" (high-pass) or "LP" (low-pass).
 void Filter::set_filter(const std::string& filter_type) {
-    if (isValidFilterType(filter_type)) {
+    if (is_valid_filter_type(filter_type)) {
         _filter_type = filter_type;
     } else {
         // Error message if the filter type is invalid
