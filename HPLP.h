@@ -26,7 +26,7 @@ public:
     void output_result() const;
 
     // Function to validate the filter type
-    static bool isValidFilterType(const std::string& filter_type);
+    static bool is_valid_filter_type(const std::string& filter_type);
 
 private:
     std::string _filter_type;
