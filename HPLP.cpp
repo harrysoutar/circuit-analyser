@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <limits>
 #include "HPLP.h"
 
 // Constructor
@@ -19,12 +20,13 @@ void Filter::set_filter(const std::string& filter_type) {
 // Setter for resistor value
 // Ensures that the resistor value is positive before setting it.
 void Filter::set_resistor(double resistor) {
-    if (resistor > 0.0) {
-        _resistor = resistor;
-    } else {
-        // Error message if the resistor value is invalid
-        std::cerr << "Resistor value must be greater than 0.\n";
+    while (resistor <= 0.0 || std::cin.fail()) {
+        std::cin.clear(); // Clear the error flag
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore invalid input
+        std::cerr << "Invalid resistor value! Please enter a positive number: ";
+        std::cin >> resistor;
     }
+    _resistor = resistor;
 }
 
 // Getter for resistor value
@@ -36,12 +38,13 @@ double Filter::get_resistor() const {
 // Setter for capacitor value
 // Ensures that the capacitor value is positive before setting it.
 void Filter::set_capacitor(double capacitor) {
-    if (capacitor > 0.0) {
-        _capacitor = capacitor;
-    } else {
-        // Error message if the capacitor value is invalid
-        std::cerr << "Capacitor value must be greater than 0.\n";
+    while (capacitor <= 0.0 || std::cin.fail()) {
+        std::cin.clear(); // Clear the error flag
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore invalid input
+        std::cerr << "Invalid capacitor value! Please enter a positive number: ";
+        std::cin >> capacitor;
     }
+    _capacitor = capacitor;
 }
 
 // Getter for capacitor value
@@ -74,5 +77,5 @@ void Filter::output_result() const {
 // Validate filter type
 // Helper function to check if the filter type is valid ("HP" or "LP").
 bool Filter::is_valid_filter_type(const std::string& filter_type) {
-    return filter_type == "HP" || filter_type == "LP" ||filter_type == "hp" || filter_type == "lp" || filter_type == "high-pass" || filter_type == "low-pass";
+    return filter_type == "HP" || filter_type == "LP" ||filter_type == "hp" || filter_type == "lp" || filter_type == "high-pass" || filter_type == "lp";
 }
