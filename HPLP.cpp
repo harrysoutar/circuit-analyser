@@ -73,6 +73,6 @@ void Filter::output_result() const {
 
 // Validate filter type
 // Helper function to check if the filter type is valid ("HP" or "LP").
-bool Filter::isValidFilterType(const std::string& filter_type) {
-    return filter_type == "HP" || filter_type == "LP";
+bool Filter::is_valid_filter_type(const std::string& filter_type) {
+    return filter_type == "HP" || filter_type == "LP" ||filter_type == "hp" || filter_type == "lp" || filter_type == "high-pass" || filter_type == "low-pass";
 }
